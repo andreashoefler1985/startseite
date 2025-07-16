@@ -150,21 +150,20 @@ body {
 
 /* Modal */
 .modal {
-    display: none;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1000;
-    opacity: 0;
-    transition: opacity 0.3s var(--animation-standard);
-    justify-content: center;
-    align-items: center;
+  display: none;
+  opacity: 0;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: opacity 0.3s ease;
 }
 
 .modal.show {
-    display: flex;
-    opacity: 1;
+  display: flex;
+  opacity: 1;
 }
 
 .modal-backdrop {
@@ -177,17 +176,13 @@ body {
 }
 
 .modal-content {
-    background: var(--surface-color);
-    border-radius: 8px;
-    box-shadow: var(--shadow-5);
-    margin: auto;
-    max-width: 500px;
-    width: 90%;
-    max-height: 80vh;
-    overflow-y: auto;
-    position: relative;
-    animation: modalSlideIn 0.3s var(--animation-decelerate);
-    z-index: 2;
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 90%;
+  z-index: 1001;
+  position: relative;
 }
 
 @keyframes modalSlideIn {
