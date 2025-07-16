@@ -1,15 +1,21 @@
-document.addEventListener('DOMContentLoaded', () => {
-  // Öffnen
-  document.querySelectorAll('[data-open-add]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.getElementById('addModal')?.classList.add('show');
-    });
-  });
+document.addEventListener('DOMContentLoaded', function () {
+    const openButtons = document.querySelectorAll('[data-open-add]');
+    const closeButtons = document.querySelectorAll('[data-close-add]');
+    const modal = document.getElementById('addModal');
 
-  // Schließen
-  document.querySelectorAll('[data-close-add]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.getElementById('addModal')?.classList.remove('show');
+    openButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            if (modal) {
+                modal.classList.add('show');
+            }
+        });
     });
-  });
-});
+
+    closeButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            if (modal) {
+                modal.classList.remove('show');
+            }
+        });
+    });
+}
