@@ -117,4 +117,98 @@ Du kannst deine Shortcuts exportieren:
 
 ```javascript
 // In der Browser-Konsole ausführen
-console.log(JSON.stringify(
+console.log(JSON.stringify(JSON.parse(localStorage.getItem('shortcuts')), null, 2));
+```
+
+### Backup wiederherstellen
+
+```javascript
+// Shortcuts aus Backup wiederherstellen
+const backupData = [/* Hier deine Backup-Daten einfügen */];
+localStorage.setItem('shortcuts', JSON.stringify(backupData));
+location.reload();
+```
+
+## Erweiterte Konfiguration
+
+### Port ändern
+
+Ändere in der `docker-compose.yml` den Port:
+
+```yaml
+ports:
+  - "3000:80"  # Dashboard läuft dann auf Port 3000
+```
+
+### Reverse Proxy (Traefik)
+
+Das Dashboard ist bereits für Traefik vorbereitet. Labels sind in der docker-compose.yml enthalten.
+
+### SSL/HTTPS
+
+Für Produktionsumgebungen empfiehlt sich ein Reverse Proxy wie:
+- Traefik
+- nginx-proxy
+- Caddy
+
+## Troubleshooting
+
+### Container startet nicht
+
+```bash
+# Logs anzeigen
+docker-compose logs dashboard
+
+# Container neu starten
+docker-compose restart dashboard
+```
+
+### Shortcuts verschwinden
+
+- Prüfe ob localStorage aktiviert ist
+- Prüfe die Browser-Konsole auf Fehler
+- Stelle sicher, dass JavaScript aktiviert ist
+
+### Performance
+
+Das Dashboard ist optimiert für:
+- Schnelle Ladezeiten
+- Minimale Ressourcennutzung
+- Smooth Animationen
+
+## Entwicklung
+
+### Lokale Entwicklung
+
+```bash
+# Dateien bearbeiten und dann neu bauen
+docker-compose build
+docker-compose up -d
+```
+
+### Neue Features
+
+Das Dashboard kann erweitert werden um:
+- Kategorien/Gruppen
+- Import/Export-Funktion
+- Suchfunktion
+- Drag & Drop
+- Mehrere Dashboards
+
+## Lizenz
+
+MIT License - Freie Nutzung und Anpassung erlaubt.
+
+## Ähnliche Projekte
+
+- [Heimdall](https://github.com/linuxserver/Heimdall)
+- [Homer](https://github.com/bastienwirtz/homer)
+- [Organizr](https://github.com/causefx/Organizr)
+- [Flame](https://github.com/pawelmalak/flame)
+
+## Support
+
+Bei Problemen oder Fragen:
+1. Prüfe die Browser-Konsole auf Fehler
+2. Schaue in die Docker-Logs
+3. Stelle sicher, dass alle Dateien korrekt erstellt wurden
