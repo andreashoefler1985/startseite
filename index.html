@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mein Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Material Design App Bar -->
+        <header class="app-bar">
+            <div class="app-bar-content">
+                <div class="app-bar-title">
+                    <i class="material-icons">dashboard</i>
+                    <h1>Mein Dashboard</h1>
+                </div>
+                <button class="fab-add" onclick="openAddModal()">
+                    <i class="material-icons">add</i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="shortcuts-grid" id="shortcutsGrid">
+                <!-- Shortcuts werden hier dynamisch geladen -->
+            </div>
+        </main>
+
+        <!-- Material Design FAB (Floating Action Button) -->
+        <button class="fab fab-primary" onclick="openAddModal()">
+            <i class="material-icons">add</i>
+        </button>
+
+        <!-- Add Modal - Material Design -->
+        <div id="addModal" class="modal">
+            <div class="modal-backdrop" onclick="closeAddModal()"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Neuen Shortcut hinzufügen</h2>
+                    <button class="modal-close" onclick="closeAddModal()">
+                        <i class="material-icons">close</i>
+                    </button>
+                </div>
+                <form id="shortcutForm" class="modal-body">
+                    <div class="input-group">
+                        <input type="text" id="name" required>
+                        <label for="name">Name</label>
+                        <div class="input-line"></div>
+                    </div>
+                    <div class="input-group">
+                        <input type="url" id="url" required>
+                        <label for="url">URL</label>
+                        <div class="input-line"></div>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" id="icon" placeholder="z.B. fab fa-github">
+                        <label for="icon">Icon (Font Awesome Klasse)</label>
+                        <div class="input-line"></div>
+                    </div>
+                    <div class="input-group">
+                        <textarea id="description" rows="3"></textarea>
+                        <label for="description">Beschreibung</label>
+                        <div class="input-line"></div>
+                    </div>
+                    <div class="input-group">
+                        <input type="color" id="color" value="#2196F3">
+                        <label for="color">Farbe</label>
+                        <div class="input-line"></div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-text" onclick="closeAddModal()">Abbrechen</button>
+                        <button type="submit" class="btn btn-primary">Hinzufügen</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Edit Modal - Material Design -->
+        <div id="editModal" class="modal">
+            <div class="modal-backdrop" onclick="closeEditModal()"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Shortcut bearbeiten</h2>
+                    <button class="modal-close" onclick="closeEditModal()">
+                        <i class="material-icons">close</i>
+                    </button>
+                </div>
+                <form id="editForm" class="modal-body">
+                    <div class="input-group">
+                        <input type="text" id="editName" required>
+                        <label for="editName">Name</label>
+                        <div class="input-line"></div>
+                    </div>
+                    <div class="input-group">
+                        <input type="url" id="editUrl" required>
+                        <label for="editUrl">URL</label>
+                        <div class="input-line"></div>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" id="editIcon" placeholder="z.B. fab fa-github">
+                        <label for="editIcon">Icon (Font Awesome Klasse)</label>
+                        <div class="input-line"></div>
+                    </div>
+                    <div class="input-group">
+                        <textarea id="editDescription" rows="3"></textarea>
+                        <label for="editDescription">Beschreibung</label>
+                        <div class="input-line"></div>
+                    </div>
+                    <div class="input-group">
+                        <input type="color" id="editColor">
+                        <label for="editColor">Farbe</label>
+                        <div class="input-line"></div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-text" onclick="closeEditModal()">Abbrechen</button>
+                        <button type="submit" class="btn btn-primary">Speichern</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Snackbar für Notifications -->
+        <div id="snackbar" class="snackbar">
+            <span class="snackbar-text"></span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
