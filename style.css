@@ -1,0 +1,568 @@
+/* Material Design CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #2196F3;
+    --primary-dark: #1976D2;
+    --primary-light: #BBDEFB;
+    --accent-color: #FF4081;
+    --background-color: #FAFAFA;
+    --surface-color: #FFFFFF;
+    --error-color: #F44336;
+    --text-primary: #212121;
+    --text-secondary: #757575;
+    --text-hint: #BDBDBD;
+    --divider-color: #E0E0E0;
+    
+    /* Material Design Shadows */
+    --shadow-1: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    --shadow-2: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    --shadow-3: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    --shadow-4: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    --shadow-5: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    
+    /* Material Design Animations */
+    --animation-standard: cubic-bezier(0.4, 0.0, 0.2, 1);
+    --animation-decelerate: cubic-bezier(0.0, 0.0, 0.2, 1);
+    --animation-accelerate: cubic-bezier(0.4, 0.0, 1, 1);
+}
+
+body {
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-primary);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.app-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Material Design App Bar */
+.app-bar {
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: var(--shadow-2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.app-bar-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.app-bar-title {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.app-bar-title h1 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.125em;
+}
+
+.app-bar-title .material-icons {
+    font-size: 1.75rem;
+}
+
+.fab-add {
+    background: rgba(255,255,255,0.1);
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s var(--animation-standard);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fab-add:hover {
+    background: rgba(255,255,255,0.2);
+    transform: scale(1.1);
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 16px;
+    width: 100%;
+}
+
+/* Shortcuts Grid */
+.shortcuts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+/* Material Design Cards */
+.shortcut-card {
+    background: var(--surface-color);
+    border-radius: 8px;
+    box-shadow: var(--shadow-1);
+    transition: all 0.3s var(--animation-standard);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+}
+
+.shortcut-card:hover {
+    box-shadow: var(--shadow-3);
+    transform: translateY(-2px);
+}
+
+.shortcut-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--card-color, var(--primary-color));
+}
+
+.shortcut-card-content {
+    padding: 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.shortcut-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+    color: var(--card-color, var(--primary-color));
+}
+
+.shortcut-name {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+    line-height: 1.4;
+}
+
+.shortcut-description {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    margin-bottom: 16px;
+    line-height: 1.5;
+    flex: 1;
+}
+
+.shortcut-url {
+    color: var(--text-hint);
+    font-size: 0.75rem;
+    word-break: break-all;
+    font-family: 'Courier New', monospace;
+    margin-top: auto;
+}
+
+.card-actions {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    opacity: 0;
+    transition: opacity 0.3s var(--animation-standard);
+    display: flex;
+    gap: 4px;
+}
+
+.shortcut-card:hover .card-actions {
+    opacity: 1;
+}
+
+.card-action-btn {
+    background: var(--surface-color);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.3s var(--animation-standard);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-1);
+}
+
+.card-action-btn:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: scale(1.1);
+}
+
+.card-action-btn.delete:hover {
+    background: var(--error-color);
+}
+
+/* Material Design FAB */
+.fab {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    transition: all 0.3s var(--animation-standard);
+    z-index: 50;
+}
+
+.fab-primary {
+    background: var(--primary-color);
+    color: white;
+    box-shadow: var(--shadow-3);
+}
+
+.fab-primary:hover {
+    background: var(--primary-dark);
+    box-shadow: var(--shadow-4);
+    transform: scale(1.1);
+}
+
+.fab-primary:active {
+    box-shadow: var(--shadow-5);
+}
+
+/* Material Design Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s var(--animation-standard);
+}
+
+.modal.show {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background: var(--surface-color);
+    border-radius: 8px;
+    box-shadow: var(--shadow-5);
+    margin: auto;
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    animation: modalSlideIn 0.3s var(--animation-decelerate);
+}
+
+@keyframes modalSlideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-header {
+    padding: 24px 24px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--divider-color);
+}
+
+.modal-header h2 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.3s var(--animation-standard);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-close:hover {
+    background: rgba(0,0,0,0.04);
+}
+
+.modal-body {
+    padding: 24px;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    margin-top: 24px;
+}
+
+/* Material Design Input Fields */
+.input-group {
+    position: relative;
+    margin-bottom: 24px;
+}
+
+.input-group input,
+.input-group textarea {
+    width: 100%;
+    padding: 12px 0 8px;
+    border: none;
+    border-bottom: 1px solid var(--divider-color);
+    background: transparent;
+    font-size: 1rem;
+    color: var(--text-primary);
+    transition: all 0.3s var(--animation-standard);
+    outline: none;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+    border-bottom-color: var(--primary-color);
+}
+
+.input-group input:focus + label,
+.input-group textarea:focus + label,
+.input-group input:not(:placeholder-shown) + label,
+.input-group textarea:not(:placeholder-shown) + label,
+.input-group input[type="color"] + label {
+    transform: translateY(-20px) scale(0.8);
+    color: var(--primary-color);
+}
+
+.input-group label {
+    position: absolute;
+    top: 12px;
+    left: 0;
+    color: var(--text-hint);
+    font-size: 1rem;
+    pointer-events: none;
+    transition: all 0.3s var(--animation-standard);
+    transform-origin: left;
+}
+
+.input-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: width 0.3s var(--animation-standard);
+}
+
+.input-group input:focus ~ .input-line,
+.input-group textarea:focus ~ .input-line {
+    width: 100%;
+}
+
+.input-group input[type="color"] {
+    height: 48px;
+    border-radius: 4px;
+    border: 1px solid var(--divider-color);
+    cursor: pointer;
+}
+
+/* Material Design Buttons */
+.btn {
+    padding: 10px 24px;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s var(--animation-standard);
+    min-width: 64px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+    box-shadow: var(--shadow-1);
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    box-shadow: var(--shadow-2);
+}
+
+.btn-text {
+    background: transparent;
+    color: var(--primary-color);
+}
+
+.btn-text:hover {
+    background: rgba(33, 150, 243, 0.04);
+}
+
+/* Ripple Effect */
+.btn:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    transition: width 0.3s, height 0.3s, top 0.3s, left 0.3s;
+    transform: translate(-50%, -50%);
+}
+
+.btn:active:before {
+    width: 200px;
+    height: 200px;
+    top: 50%;
+    left: 50%;
+}
+
+/* Material Design Snackbar */
+.snackbar {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: #323232;
+    color: white;
+    padding: 14px 24px;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    z-index: 2000;
+    transition: transform 0.3s var(--animation-standard);
+    max-width: 568px;
+    min-width: 288px;
+}
+
+.snackbar.show {
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 48px 24px;
+    color: var(--text-secondary);
+    grid-column: 1 / -1;
+}
+
+.empty-state .material-icons {
+    font-size: 4rem;
+    margin-bottom: 16px;
+    color: var(--text-hint);
+}
+
+.empty-state h3 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 8px;
+    color: var(--text-secondary);
+}
+
+.empty-state p {
+    font-size: 0.875rem;
+    color: var(--text-hint);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .app-bar-content {
+        padding: 0 16px;
+    }
+    
+    .main-content {
+        padding: 16px;
+    }
+    
+    .shortcuts-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .modal-content {
+        margin: 20px;
+        width: calc(100% - 40px);
+    }
+    
+    .fab {
+        bottom: 16px;
+        right: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .app-bar-title h1 {
+        font-size: 1.25rem;
+    }
+    
+    .shortcut-card-content {
+        padding: 16px;
+    }
+    
+    .modal-header,
+    .modal-body {
+        padding: 16px;
+    }
+}
